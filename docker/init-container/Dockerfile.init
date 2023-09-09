@@ -1,0 +1,3 @@
+FROM openpolicyagent/proxy_init:v5
+
+ 

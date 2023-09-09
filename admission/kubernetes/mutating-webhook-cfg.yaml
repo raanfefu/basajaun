@@ -1,0 +1,25 @@
+apiVersion: admissionregistration.k8s.io/v1
+kind: MutatingWebhookConfiguration
+metadata:
+  name: authz-webhook-admission-controller
+webhooks:
+  - name: basajuan
+    clientConfig:
+      service:
+        name: admission-controller-inject
+        namespace: authz-system
+        path: "/mutation"
+      caBundle: {{ CA_CRT }}
+    rules:
+      - operations: ["CREATE"]
+        apiGroups: [""]
+        apiVersions: ["v1"]
+        resources: ["pods"]
+    namespaceSelector:
+      matchLabels:
+        authz: enabled
+    failurePolicy: Fail
+    sideEffects: None
+    admissionReviewVersions:
+      - v1beta1
+

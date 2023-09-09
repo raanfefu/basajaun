@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: admission-controller-inject
+  namespace: authz-system
+  name: admission-controller-inject
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: admission-controller-inject
+  template:
+    metadata:
+      labels:
+        app: admission-controller-inject
+      name: admission-controller-inject
+    spec:
+      containers:
+        - image:  {{ ADMISSION_CRTL_IMAGE }}
+          name: admission-controller-inject
+          ports:
+          - containerPort: 443
+          imagePullPolicy: Always
+          env:
+            - name: PROXY_IMAGE
+              value: {{ PROXY_IMAGE }}
+            - name: OPA_IMAGE
+              value: {{ OPA_IMAGE }}
+            - name: PROXY_INIT
+              value: {{ INIT_IMAGE }}
+      imagePullSecrets:
+      - name: regcred           
+       
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: admission-controller-inject
+  namespace: authz-opa
+  labels:
+    app: admission-controller-inject
+spec:
+  ports:
+    - port: 443
+      name: https
+  selector:
+    app: admission-controller-inject

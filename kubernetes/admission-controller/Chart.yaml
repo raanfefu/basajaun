@@ -1,0 +1,19 @@
+apiVersion: v2
+name: admission-controller
+version: A SemVer 2 version (required)
+kubeVersion: A SemVer range of compatible Kubernetes versions (optional)
+description: Admission controller by inject container authz-system
+type: application
+keywords:
+  - admission-controller
+home: The URL of this projects home page (optional)
+sources:
+  -  https://github.com/raanfefu/basajaun/kubernetes/admission-controller
+maintainers: # (optional)
+  - name: rafael martin fernandez oberto
+    email: rafael.fernandez.ve@gmail.com
+    url: A URL for the maintainer (optional for each maintainer)
+icon: https://github.com/raanfefu/basajaun/basajaun/architecture/assets/8352357.png
+appVersion: v0.0.1
+annotations:
+  example: A list of annotations keyed by name (optional).
