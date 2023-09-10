@@ -3,9 +3,6 @@ FROM golang:latest
 RUN mkdir -p /app 
 WORKDIR /app 
 
-#COPY admission-controller.authz-opa.svc.crt ./cert.crt
-#COPY admission-controller.authz-opa.svc.key ./cert.key
-
 COPY ./entrypoint.sh ./admission_controller ./ 
 ENTRYPOINT ["/app/entrypoint.sh"]
  

@@ -1,0 +1,12 @@
+apiVersion: v1
+entries:
+  admission-controller:
+    - name: admission-controller-authz-system
+      description: Admission controller by inject container authz-system
+      home: https://github.com/raanfefu/basajaun
+      sources:
+      - https://github.com/raanfefu/basajaun/tree/main/kubernetes/admission-controller
+      urls:
+      - https://technosophos.github.io/tscharts/alpine-0.2.0.tgz
+      version: 0.2.0
+generated: "2023-09-09T10:08:22.262714-05:00"
