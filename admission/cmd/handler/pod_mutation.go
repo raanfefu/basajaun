@@ -52,7 +52,7 @@ func PodMutationHandler(admissionReview *admissionv1.AdmissionReview) *admission
 
 	_, err = k8s.GetConfigmap(admissionReview.Request.Namespace, NAME_CONFIGMAP_BY_FILE_CONFIG_ENVOY)
 	if err != nil {
-		log.Printf("err get configmap  %s\n ", secret_value_az_config)
+		log.Printf("err get configmap  %s\n ", NAME_CONFIGMAP_BY_FILE_CONFIG_ENVOY)
 		admissionReviewOut.Response.Allowed = false
 		return admissionReviewOut
 	}
