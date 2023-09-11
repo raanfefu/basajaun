@@ -5,13 +5,13 @@ type: application
 version: 1.0.0
 keywords:
   - admission-controller
-home: https://raanfefu.github.io/basajaun/repo
+home: https://github.com/raanfefu/basajaun/
 sources:
-  -  https://raanfefu.github.io/basajaun/charts/admission-controller 
+  -  https://github.com/raanfefu/basajaun/tree/main/charts/admission-controller 
 maintainers: # (optional)
   - name: rafael martin fernandez oberto
     email: rafael.fernandez.ve@gmail.com
-    url: https://raanfefu.github.io/basajaun/repo
+    url: https://github.com/raanfefu
 icon: https://github.com/raanfefu/basajaun/blob/main/architecture/assets/8352357.png    
 appVersion: "1.0.0"
 
