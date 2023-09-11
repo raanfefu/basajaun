@@ -35,7 +35,6 @@ docker:
     }
   }
 
-
 cert:
   ca_crt: |
     -----BEGIN CERTIFICATE-----
