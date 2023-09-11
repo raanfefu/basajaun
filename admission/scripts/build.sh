@@ -1,15 +1,14 @@
 #!/bin/sh
+ 
+GOOS=`cat  ../charts/admission-controller/values.yaml | yq | jq -r .json_values.build_values.golang.goos`
+GOARCH=`cat  ../charts/admission-controller/values.yaml | yq | jq -r .json_values.build_values.golang.goarch`
+APP_NAME=`cat  ../charts/admission-controller/values.yaml | yq | jq -r .json_values.deployment.name`
+REGISTRY=`cat  ../charts/admission-controller/values.yaml | yq | jq -r .json_values.deployment.registry`
+ADMISSION_CRTL_IMAGE=`cat  ../charts/admission-controller/values.yaml | yq | jq -r .json_values.deployment.image_admission_ctrl`
+DOCKER_PLATFORM=${GOOS}/${GOARCH}
 
 if test -d ${BUILD_PATH}; then
     rm -rf ${BUILD_PATH}
-fi
-
-GLOBALS="../scripts/globals.env"
-if test -f ${GLOBALS}; then
-    echo "."
-else
-    echo "Not found globals.env"
-    exit 1
 fi
 
 mkdir ${BUILD_PATH}

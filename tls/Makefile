@@ -2,10 +2,10 @@ CAKEY=ssl/ca/private/rootCA.key
 CA=ssl/ca/certs/rootCA.crt
 CACNF=ssl/ca/config/ca.cnf
 
-KEY_K8SAC=ssl/admission-controller/private/admission-controller.authz-opa.svc.key
-CSR_K8SAC=ssl/admission-controller/certs/admission-controller.authz-opa.svc.csr
-CRT_K8SAC=ssl/admission-controller/certs/admission-controller.authz-opa.svc.crt
-CNF_k8SAC=ssl/admission-controller/config/admission-controller.authz-opa.cnf 
+KEY_K8SAC=ssl/admission-controller/private/admission-controller.authz-system.svc.key
+CSR_K8SAC=ssl/admission-controller/certs/admission-controller.authz-system.svc.csr
+CRT_K8SAC=ssl/admission-controller/certs/admission-controller.authz-system.svc.crt
+CNF_k8SAC=ssl/admission-controller/config/admission-controller.cnf 
 
 genca:
 	echo "araguaney" | openssl genrsa -des3 -passout stdin -out ${CAKEY} 4096

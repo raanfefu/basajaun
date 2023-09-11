@@ -17,7 +17,6 @@ spec:
       name: admission-controller-inject
     spec:
       containers:
-
         - image: {{ (list .Values.json_values.deployment.registry .Values.json_values.deployment.image_admission_ctrl | join "/") }} 
           name: admission-controller-inject
           ports:
@@ -30,9 +29,18 @@ spec:
               value: {{ (list .Values.json_values.deployment.registry .Values.json_values.deployment.image_opa | join "/") }}   
             - name: PROXY_INIT
               value: {{ (list .Values.json_values.deployment.registry .Values.json_values.deployment.image_init | join "/") }} 
+          volumeMounts:
+            - mountPath: /app/cert/
+              name: tls-admission-crtl
+              readOnly: true
       imagePullSecrets:
-      - name: regcred           
-       
+      - name: regcred
+      volumes:
+        - name: tls-admission-crtl
+          secret:
+            defaultMode: 420
+            secretName: tls-admission-crtl          
+            
 ---
 apiVersion: v1
 kind: Service
