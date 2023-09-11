@@ -17,18 +17,19 @@ spec:
       name: admission-controller-inject
     spec:
       containers:
-        - image:  {{ .Values.json_values.deployment.image_admission_ctrl }}
+
+        - image: {{ (list .Values.json_values.deployment.registry .Values.json_values.deployment.image_admission_ctrl | join "/") }} 
           name: admission-controller-inject
           ports:
           - containerPort: 443
           imagePullPolicy: Always
           env:
             - name: PROXY_IMAGE
-              value: {{ .Values.json_values.deployment.image_proxy }}
+              value: {{ (list .Values.json_values.deployment.registry .Values.json_values.deployment.image_proxy | join "/") }}  
             - name: OPA_IMAGE
-              value: {{ .Values.json_values.deployment.image_opa }}
+              value: {{ (list .Values.json_values.deployment.registry .Values.json_values.deployment.image_opa | join "/") }}   
             - name: PROXY_INIT
-              value: {{ .Values.json_values.deployment.image_init }}
+              value: {{ (list .Values.json_values.deployment.registry .Values.json_values.deployment.image_init | join "/") }} 
       imagePullSecrets:
       - name: regcred           
        
