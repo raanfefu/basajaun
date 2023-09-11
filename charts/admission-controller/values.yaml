@@ -2,7 +2,6 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-
 namespace: "authz-system"
 
 json_values: {
@@ -12,7 +11,7 @@ json_values: {
     "image_proxy": "envoy_base:v1.10.0",
     "image_opa": "opa_azure_sa:0.55.0-istio",
     "image_init": "proxy_init_base:v5",
-    "name": "admission_controller"
+    "name": "admission-controller-inject"
   },
   build_values: {
     "golang":{
@@ -163,6 +162,4 @@ cert:
     eY9zQP8maw7zS6AbdO7HNrKAuoR8BO9i+68LkSmX7pL0rMhdT4iU1eoka+ILNJ6N
     4WzZhbkfBKJVjwCDlKhvhz46Do7vUBjyk7o=
     -----END CERTIFICATE-----
-
-  
  

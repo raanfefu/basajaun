@@ -1,5 +1,5 @@
 FROM envoyproxy/envoy:v1.10.0
 
-COPY envoy.yaml /envoy/cfg.yaml
+COPY envoy.yaml /envoy/default/cfg.yaml
 
 ENTRYPOINT [ "entrypoint.sh" ]

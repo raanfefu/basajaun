@@ -6,8 +6,8 @@ webhooks:
   - name: auth.basajuan.io
     clientConfig:
       service:
-        name: admission-controller-inject
-        namespace: {{ .Values.namespace }}
+        name: {{ .Values.json_values.deployment.name }}
+        namespace: {{ .Release.Namespace }}
         path: "/mutation"
       caBundle: '{{ .Values.cert.ca_crt | b64enc }}'
     rules:
