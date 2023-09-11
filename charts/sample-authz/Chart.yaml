@@ -1,6 +1,6 @@
 apiVersion: v2
 name: sample-authz
-description: Admission controller by inject container authz-system
+description: example service using authz-system
 type: application
 version: 0.0.1
 keywords:
