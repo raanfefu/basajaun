@@ -17,6 +17,7 @@ spec:
       name: {{ .Values.json_values.deployment.name }}
     spec:
       containers:
+
         - image: {{ (list .Values.json_values.deployment.registry .Values.json_values.deployment.image_admission_ctrl | join "/") }} 
           name: {{ .Values.json_values.deployment.name }}
           ports:
