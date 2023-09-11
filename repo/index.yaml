@@ -3,10 +3,10 @@ entries:
   admission-controller:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2023-09-10T19:24:22.660478-05:00"
+    created: "2023-09-10T19:31:22.128521-05:00"
     description: Admission controller by inject container authz-system
-    digest: d098a65a997e795bca3a4269d402fceb40719fd1b40d116fb21e6e2ad9f0e52d
-    home: https://github.com/raanfefu/basajaun/
+    digest: 4bfb9496e6f21304a902d6d8e362210a6114ddfa0eeaf8d23cf68d4ffcc3c916
+    home: https://raanfefu.github.io/basajaun/repo
     icon: https://github.com/raanfefu/basajaun/blob/main/architecture/assets/8352357.png
     keywords:
     - admission-controller
@@ -16,9 +16,9 @@ entries:
       url: https://github.com/raanfefu/basajaun
     name: admission-controller
     sources:
-    - https://github.com/raanfefu/basajaun/tree/main/charts/admission-controller
+    - https://raanfefu.github.io/basajaun/charts/admission-controller
     type: application
     urls:
-    - https://github.com/raanfefu/basajaun/admission-controller-1.0.0.tgz
+    - https://raanfefu.github.io/basajaun/repo/admission-controller-1.0.0.tgz
     version: 1.0.0
-generated: "2023-09-10T19:24:22.658978-05:00"
+generated: "2023-09-10T19:31:22.127967-05:00"
