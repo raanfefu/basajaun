@@ -1,0 +1,24 @@
+[req]
+distinguished_name = req_distinguished_name
+req_extensions = req_ext
+prompt = no
+
+[req_distinguished_name]
+C   = PE
+ST  = LIMA
+L   = LIMA
+O   = araguaney
+OU  = authz-system
+ 
+
+[req_ext]
+subjectAltName=@alt_names
+basicConstraints=CA:FALSE
+keyUsage = nonRepudiation, digitalSignature, keyEncipherment
+extendedKeyUsage = serverAuth
+ 
+[alt_names]
+DNS.1 = admission-controller-inject
+DNS.2 = admission-controller-inject.authz-system
+DNS.3 = admission-controller-inject.authz-system.svc
+DNS.4 = admission-controller-inject.authz-system.svc.cluster.local

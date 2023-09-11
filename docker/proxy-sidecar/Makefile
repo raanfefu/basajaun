@@ -1,10 +1,12 @@
 DOCKER_PLATFORM=linux/amd64
-IMAGE_NAME=acrbackstagedev1.azurecr.io/envoy_base:v1.10.0
-
 build:	
+
 	@printf "********************************************\n" 
-	docker build  --platform=${DOCKER_PLATFORM} -t ${IMAGE_NAME} -f Dockerfile.proxy . 
+	docker build  --platform=${DOCKER_PLATFORM} \
+	  -t `cat  ../../charts/admission-controller/values.yaml | yq | jq -r .json_values.deployment.registry`/`cat  ../../charts/admission-controller/values.yaml | yq | jq -r .json_values.deployment.image_proxy` \
+	  -f Dockerfile.proxy  . 
 	@printf "********************************************\n\n\n" 
+
 	@printf "********************************************\n" 
-	docker push ${IMAGE_NAME} 
+	docker push `cat  ../../charts/admission-controller/values.yaml | yq | jq -r .json_values.deployment.registry`/`cat  ../../charts/admission-controller/values.yaml | yq | jq -r .json_values.deployment.image_proxy` 
 	@printf "********************************************\n\n\n" 

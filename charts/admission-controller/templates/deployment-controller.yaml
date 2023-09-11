@@ -2,24 +2,24 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: admission-controller-inject
-  namespace: {{ .Values.namespace }}
-  name: admission-controller-inject
+    app: {{ .Values.json_values.deployment.name }}
+  namespace: {{ .Release.Namespace }}
+  name: {{ .Values.json_values.deployment.name }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: admission-controller-inject
+      app: {{ .Values.json_values.deployment.name }}
   template:
     metadata:
       labels:
-        app: admission-controller-inject
-      name: admission-controller-inject
+        app: {{ .Values.json_values.deployment.name }}
+      name: {{ .Values.json_values.deployment.name }}
     spec:
       containers:
 
         - image: {{ (list .Values.json_values.deployment.registry .Values.json_values.deployment.image_admission_ctrl | join "/") }} 
-          name: admission-controller-inject
+          name: {{ .Values.json_values.deployment.name }}
           ports:
           - containerPort: 443
           imagePullPolicy: Always
@@ -30,20 +30,16 @@ spec:
               value: {{ (list .Values.json_values.deployment.registry .Values.json_values.deployment.image_opa | join "/") }}   
             - name: PROXY_INIT
               value: {{ (list .Values.json_values.deployment.registry .Values.json_values.deployment.image_init | join "/") }} 
+          volumeMounts:
+            - mountPath: /app/cert/
+              name: tls-admission-crtl
+              readOnly: true
       imagePullSecrets:
-      - name: regcred           
-       
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: admission-controller-inject
-  namespace: {{ .Values.namespace }}
-  labels:
-    app: admission-controller-inject
-spec:
-  ports:
-    - port: 443
-      name: https
-  selector:
-    app: admission-controller-inject
+      - name: regcred
+      volumes:
+        - name: tls-admission-crtl
+          secret:
+            defaultMode: 420
+            secretName: tls-admission-crtl          
+ 
+

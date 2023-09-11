@@ -13,15 +13,15 @@ req_extensions     = v3_req
 
 # distinguished_name
 [ req_distinguished_name ]
-countryName            = "PE"                           # C=
-stateOrProvinceName    = "LIMA"                         # ST=
-localityName           = "LIMA"                         # L=
-postalCode             = "N/A"                        # L/postalcode=
-streetAddress          = "N/A"   # L/street=
-organizationName       = "araguaney"                   # O=
-organizationalUnitName = "araguaney"                   # OU=
-commonName             = "admission_ca"      # CN=
-emailAddress           = "rafael.fernandez.ve@gmail.com" # CN/emailAddress=
+countryName            = "PE"                               # C=
+stateOrProvinceName    = "LIMA"                             # ST=
+localityName           = "LIMA"                             # L=
+postalCode             = "N/A"                              # L/postalcode=
+streetAddress          = "N/A"                              # L/street=
+organizationName       = "araguaney"                        # O=
+organizationalUnitName = "araguaney"                        # OU=
+commonName             = "admission_ca"                     # CN=
+emailAddress           = "rafael.fernandez.ve@gmail.com"    # CN/emailAddress=
 
 # req_extensions
 [ v3_req ]

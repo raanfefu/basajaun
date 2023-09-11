@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: {{ .Values.json_values.deployment.name }}
+  namespace: {{ .Release.Namespace }}
+  name: {{ .Values.json_values.deployment.name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.json_values.deployment.name }}
+  template:
+    metadata:
+      annotations:
+        opa-bundle-name:  {{ .Values.secret_cfg_sa.bundle_name }}
+        opa-cfg-file:  {{ .Values.secret_cfg_sa.name }}
+        opa-enabled: "true"
+      labels:
+        app: {{ .Values.json_values.deployment.name }}
+      name: {{ .Values.json_values.deployment.name }}
+    spec:
+      containers:
+        - image: {{ (list .Values.json_values.deployment.registry .Values.json_values.deployment.image_sample | join "/") }} 
+          name: {{ .Values.json_values.deployment.name }}
+          env:
+            - name: PORT
+              value: "8080"
+          ports:
+          - containerPort: {{ .Values.json_values.deployment.port }}
+          imagePullPolicy: Always
+      imagePullSecrets:
+      - name: regcred
+       
+ 

@@ -1,5 +1,5 @@
 #!/bin/sh
-
+cat /app/env/sa.env 
 export $(cat /app/env/sa.env | xargs)
 
 /app/opa_envoy_linux_amd64 run \
