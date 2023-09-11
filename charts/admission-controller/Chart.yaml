@@ -7,7 +7,7 @@ keywords:
   - admission-controller
 home: https://github.com/raanfefu/basajaun/
 sources:
-  -  https://github.com/raanfefu/basajaun/tree/main/kubernetes/admission-controller 
+  -  https://github.com/raanfefu/basajaun/tree/main/charts/admission-controller 
 maintainers: # (optional)
   - name: rafael martin fernandez oberto
     email: rafael.fernandez.ve@gmail.com
