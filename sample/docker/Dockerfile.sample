@@ -1,7 +1,0 @@
-FROM golang:latest
- 
-RUN mkdir -p /app 
-WORKDIR /app 
-
-COPY ./entrypoint.sh ./sample-authz ./ 
-ENTRYPOINT ["/app/entrypoint.sh"]

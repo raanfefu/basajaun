@@ -9,6 +9,7 @@ json_values: {
     "registry": "acrbackstagedev1.azurecr.io",
     "image_sample": "sample-authz:0.0.1",
     "name": "sample-authz",
+    bundle_name: "sample-authz.tar.gz",
     "port": 8080
   },
   build_values: {
@@ -20,7 +21,6 @@ json_values: {
 }
 
 secret_cfg_sa:
-  bundle_name: sample-authz.tar.gz
   name: sample-authz-cfg-sa
   value: |
     STORAGE_ACCOUNT="opabundletest" 

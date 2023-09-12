@@ -17,5 +17,5 @@ ENV PATH="$PATH:/scripts"
 
 WORKDIR /workspace
 
-#ENTRYPOINT [ "entrypoint.sh" ]
+ENTRYPOINT [ "entrypoint.sh" ]
 

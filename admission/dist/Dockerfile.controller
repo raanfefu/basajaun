@@ -1,8 +1,0 @@
-FROM golang:latest
- 
-RUN mkdir -p /app 
-WORKDIR /app 
-
-COPY ./entrypoint.sh ./admission_controller ./ 
-ENTRYPOINT ["/app/entrypoint.sh"]
- 
