@@ -1,0 +1,17 @@
+apiVersion: v2
+name: admission-controller
+description: Admission controller by inject container authz-system
+type: application
+version: 0.0.1
+keywords:
+  - admission-controller
+home: https://github.com/raanfefu/basajaun/
+sources:
+  -  https://github.com/raanfefu/basajaun/tree/main/charts/admission-controller 
+maintainers: # (optional)
+  - name: rafael martin fernandez oberto
+    email: rafael.fernandez.ve@gmail.com
+    url: https://github.com/raanfefu
+icon: https://github.com/raanfefu/basajaun/blob/main/architecture/assets/8352357.png    
+appVersion: "0.0.1"
+ 

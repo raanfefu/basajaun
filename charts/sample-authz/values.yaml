@@ -1,0 +1,43 @@
+# Default values for admission-controller.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+namespace: authz-sample
+
+json_values: {
+  "deployment":{
+    "registry": "acrbackstagedev1.azurecr.io",
+    "image_sample": "sample-authz:0.0.1",
+    "name": "sample-authz",
+    "bundle_name": "sample-authz.tar.gz",
+    "port": 8080
+  },
+  build_values: {
+    "golang":{
+      "goos": "linux",
+      "goarch": "amd64"
+    }
+  }
+}
+
+secret_cfg_sa:
+  name: sample-authz-cfg-sa
+  value: |
+    STORAGE_ACCOUNT="opabundletest" 
+    TENANT_ID='27eb7bd2-49a9-40dd-bc1d-516ab57c8258' 
+    CLIENT_ID='1389cf37-c824-446c-802a-096e1fbd535a' 
+    SECRET='cCy8Q~pr~NvM~DWhXsBXk5p24oM4i69hPIwqRcKy' 
+    CONTAINER_NAME='bundle' 
+
+ 
+docker:
+  platform: linux/amd64
+  docker_cfg_json: {
+    "auths": {
+      "acrbackstagedev1.azurecr.io": {
+        "username": "acrbackstagedev1",
+        "password": "BmzJqxgLHOt8ys1ZOxDJ/K6QO5ncxhisB3zseSGhvY+ACRAF/lVF",
+        "auth": "YWNyYmFja3N0YWdlZGV2MTpCbXpKcXhnTEhPdDh5czFaT3hESi9LNlFPNW5jeGhpc0IzenNlU0dodlkrQUNSQUYvbFZG"
+      }
+    }
+  }

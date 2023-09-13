@@ -1,0 +1,21 @@
+services:
+  blob:
+    allow_insecure_tls: true
+    url: https://${STORAGE_ACCOUNT}.blob.core.windows.net
+    headers:
+      x-ms-version: "2020-04-08"
+    credentials:
+      oauth2:
+        token_url: "https://login.microsoftonline.com/${TENANT_ID}/oauth2/v2.0/token"
+        client_id: "${CLIENT_ID}"
+        client_secret: "${SECRET}"
+        scopes:
+          - https://storage.azure.com/.default
+
+bundles:
+  authz:
+    service: blob
+    resource: ${CONTAINER_NAME}/${BUNDLE_NAME}
+    polling:
+      min_delay_seconds: 60
+      max_delay_seconds: 120
