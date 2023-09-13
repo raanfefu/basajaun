@@ -1,0 +1,17 @@
+apiVersion: v2
+name: sample-authz
+description: example service using authz-system
+type: application
+version: 0.0.1
+keywords:
+  - sample-authz
+home: https://github.com/raanfefu/basajaun/
+sources:
+  -  https://github.com/raanfefu/basajaun/tree/main/charts/sample-authz
+maintainers: # (optional)
+  - name: rafael martin fernandez oberto
+    email: rafael.fernandez.ve@gmail.com
+    url: https://github.com/raanfefu
+icon: https://github.com/raanfefu/basajaun/blob/main/architecture/assets/8352357.png    
+appVersion: "0.0.1"
+
