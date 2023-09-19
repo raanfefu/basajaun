@@ -1,0 +1,16 @@
+FROM openpolicyagent/opa:0.55.0-istio
+
+FROM golang:latest
+WORKDIR /app
+COPY --from=0 /app/opa_envoy_linux_amd64 /app/opa_envoy_linux_amd64
+
+RUN mkdir static/ static/web/ scripts/ template/ data/
+COPY dist/angular/ static/web/
+COPY dist/main main
+COPY dist/scripts/opa-build.sh scripts/
+COPY dist/scripts/sa.env scripts/
+COPY dist/template/policy.tpl template/
+COPY dist/template/data.json data/
+RUN echo 'export $(cat /app/scripts/sa.env | xargs) && ./main -port 8090 -directory="/app/static/web/"' 
+
+ 

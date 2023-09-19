@@ -17,5 +17,5 @@ bundles:
     service: blob
     resource: ${CONTAINER_NAME}/${BUNDLE_NAME}
     polling:
-      min_delay_seconds: 60
-      max_delay_seconds: 120
+      min_delay_seconds: 30
+      max_delay_seconds: 60
