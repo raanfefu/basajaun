@@ -84,7 +84,6 @@ func main() {
 	signalChan := make(chan os.Signal, 1)
 	signal.Notify(signalChan, syscall.SIGINT, syscall.SIGTERM)
 	<-signalChan
-
 	// Emit a shutdown log
 	fmt.Println("Got shutdown signal, shutting down webhook server gracefully...\n")
 	server.Shutdown(context.Background())

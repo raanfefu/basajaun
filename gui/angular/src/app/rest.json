@@ -1,0 +1,22 @@
+{
+     
+    "policies": [
+        {
+            "uri_resources": "/api/v1/order",
+            "action": ["POST"],
+            "statement": [
+                {
+                    "type": "body",
+                    "uri": "spec.name",
+                    "func": {
+                        "type": "in",
+                        "term": {
+                            "type":"body",
+                            "uri": "name"
+                        }
+                    }
+                } 
+            ]
+        }
+    ]
+}

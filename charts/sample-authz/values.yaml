@@ -23,10 +23,10 @@ json_values: {
 secret_cfg_sa:
   name: sample-authz-cfg-sa
   value: |
-    STORAGE_ACCOUNT="opabundletest" 
-    TENANT_ID='27eb7bd2-49a9-40dd-bc1d-516ab57c8258' 
-    CLIENT_ID='1389cf37-c824-446c-802a-096e1fbd535a' 
-    SECRET='cCy8Q~pr~NvM~DWhXsBXk5p24oM4i69hPIwqRcKy' 
+    STORAGE_ACCOUNT="sabundle" 
+    TENANT_ID='4cb367c8-fd7f-41de-8d1b-871bc2c81157' 
+    CLIENT_ID='a628b563-17bc-47de-b20f-12ccbd6b399d' 
+    SECRET='QZp8Q~KcqaCSJ-a7tbvtebu40ac96lKL125Edbfp' 
     CONTAINER_NAME='bundle' 
 
  

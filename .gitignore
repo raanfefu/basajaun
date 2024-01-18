@@ -1,2 +1,5 @@
 
 **/dist
+gui/angular/node_modules/**
+gui/angular/dist/**
+gui/angular/.angular/**

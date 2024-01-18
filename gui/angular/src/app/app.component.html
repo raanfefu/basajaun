@@ -1,0 +1,285 @@
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+  <div class="container-fluid ">
+    <span class="navbar-brand" href="#">
+      <div class="row" style="padding-left: 10px;">
+        <div class="col">
+          <button class="btn btn-success" size="15" type="button" (click)="addPolicy()"><b><i
+                class="bi bi-pass-fill">&nbsp;new policy</i></b></button>
+        </div>
+        
+        <!-- <div class="col" style="padding-left: 0px;">
+          <button class="btn btn-outline-success" *ngIf="bundle.policies.length != 0"
+            [disabled]="!evalPolicy() || disabledButton" type="button" (click)="callPolicy()"><b><i
+                class="bi bi-bootstrap-reboot">&nbsp;refresh </i></b></button>
+        </div> -->
+
+        <div class="col" style="padding: 0px;">
+          <button class="btn btn-primary" *ngIf="bundle.policies.length != 0"
+            [disabled]="!evalPolicy() || disabledButton" type="button" (click)="openModelPublish(mypublish)">
+            <b><i class="bi bi-cloud-upload-fill">&nbsp;&nbsp;publish &nbsp;&nbsp;</i></b> 
+            </button>
+                
+        </div>
+      </div>
+    </span>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+ 
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <!--li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li-->
+      </ul>
+      <form class="d-flex">
+        <button  class="btn btn-outline-success" *ngIf="bundle.policies.length != 0"
+            [disabled]="!evalPolicy() || disabledButton" type="button" (click)="callPolicy()">
+             
+                <b *ngIf="!refresh"><i class="bi bi-bootstrap-reboot">&nbsp;&nbsp;refresh </i></b>
+                <span *ngIf="refresh"  class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                <span *ngIf="refresh"  class="sr-only">&nbsp;&nbsp; loading...</span>
+        </button>
+                &nbsp;&nbsp;
+        <button class="btn btn-primary" type="button" (click)="openSettings(mymodal)"><b><i
+          class="bi bi-gear-fill">&nbsp;settings</i></b></button>
+          
+      </form>
+    
+    </div>
+  </div>
+</nav>
+
+<div class="row">
+  <div class="col-6">
+    <form>
+      <div *ngFor="let policy of bundle.policies; let indexPolicy = index">
+        <div class="row rounded border" style="margin: 1%; padding-left: 10px; padding-bottom: 20px;">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-11">
+                <div class="row my-3">
+                  <div class="col-9">
+                    <div>
+                      <label for="uriresource" class="form-label">Resource URI</label>
+                      <input type="text" class="form-control form-control-sm" id="{{ indexPolicy }}" name="{{ indexPolicy }}"
+                        [(ngModel)]="policy.uri_resource" placeholder="/service/resource">
+                    </div>
+                  </div>
+
+                </div>
+                <div class="row my">
+                  <div class="col">
+                    <div class="form-check form-check-inline" *ngFor="let cat of actions">
+                      <input class="form-check-input" (change)="onChange($event, policy)" name="{{ cat.name }}"
+                        type="checkbox" value="0" id="{{cat.name}}">
+                      <label class="form-check-label" for="{{cat.name}}">
+                        {{cat.name}}
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-1" style="margin-top: 20px;">
+                <button class="btn btn-danger" type="button" (click)="delPolicy(indexPolicy)"> <b><i
+                      class="bi bi-trash3-fill"></i></b></button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col" style="margin-left: 10px; margin-top: 40px;">
+                <h3>statements &nbsp;&nbsp; <button class="btn btn-success" type="button"
+                    (click)="addStmt(indexPolicy)"> <b><i class="bi bi-patch-plus-fill"></i></b> </button></h3>
+                <hr />
+              </div>
+            </div>
+            <div *ngFor="let stmt of policy.statements; let indexStmt = index">
+              <div class="row" style="padding-bottom: 5px;">
+                <div class="col-2">
+                  <div class="row">
+                    <select class="form-select" aria-label="" name="type" id="type" [(ngModel)]="stmt.type">
+                      <option value="body">body</option>
+                      <option value="header">header</option>
+                      <option value="data">data</option>
+                      <option value="const">const</option>
+                      <option value="claims">claims</option>
+
+                      <!--option value="path">path</option>
+                  <option value="query">query</option>
+                  <option value="cache">cache</option-->
+                    </select>
+
+                  </div>
+                </div>
+
+                <div class="col-3">
+                  <div class="row" style="padding: 0px 0px 0px 5px;">
+                    <input type="text" class="form-control" placeholder="uri" aria-label="uri" name="uri" id="uri"
+                      [(ngModel)]="stmt.uri">
+                  </div>
+                </div>
+
+                <div class="col-2">
+                  <div class="row" style="padding: 0px 0px 0px 5px;">
+                    <select class="form-select" aria-label="" name="ftype" id="ftype" [(ngModel)]="stmt.func.type">
+                      <option value="in">in</option>
+                      <option value="equals">equals</option>
+                      <option value="not-equals">not equals</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-2">
+                  <div class="row" style="padding: 0px 0px 0px 5px;">
+                    <select class="form-select" aria-label="" name="ttype" id="ttype" [(ngModel)]="stmt.func.term.type">
+                      <option value="body">body</option>
+                      <option value="header">header</option>
+                      <option value="data">data</option>
+                      <option value="const">const</option>
+
+                      <!--option value="token">token</option>
+                  <option value="path">path</option>
+                  <option value="query">query</option>
+                  <option value="cache">cache</option-->
+
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-2">
+                  <div class="row" style="padding: 0px 0px 0px 5px;">
+                    <input type="text" class="form-control" placeholder="uri" aria-label="uri" name="uri" id="uri"
+                      [(ngModel)]="stmt.func.term.uri">
+                  </div>
+                </div>
+                <div class="col-1">
+                  <button class="btn btn-danger" type="button" (click)="delStmt(indexPolicy,indexStmt)"> <b><i
+                        class="bi bi-patch-minus-fill"></i></b></button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </form>
+  </div>
+
+  <div class="col-6">
+    <div *ngIf="bundle.policies.length != 0" class="row border rounded"
+      style="margin-top: 10px;margin-right: 20px; padding-top: 20px;">
+      <div class="col">
+        <div class="row justify-content-end ">
+          <div class="col">
+            <div *ngIf="!format" style="padding-bottom: 20px;"> <b>Policy Json: </b></div>
+            <div *ngIf="format" style="padding-bottom: 20px;"> <b>Policy Rego: </b></div>
+          </div>
+          <div class="col-auto">
+            <div>
+              <button *ngIf="bundle.policies.length != 0 && format" class="btn btn-warning" type="button"
+                (click)="toggle()"><b><i class="bi bi-filetype-json"> JSON </i></b></button>
+            </div>
+            <button *ngIf="bundle.policies.length != 0 && !format" class="btn btn-warning" type="button"
+              (click)="toggle()"><b><i class="bi bi-filetype-json"> REGO </i></b></button>
+          </div>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col">
+          <pre *ngIf="format">{{ response.policy }}</pre>
+          <pre *ngIf="!format">{{ response.rule | json   }}</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+ 
+<ng-template #mymodal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Settings</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="close(2)"></button>
+  </div>
+
+  <div class="modal-body">
+    <form>
+
+      <div class="mb-3">
+        <label for="message-text" class="col-form-label">type:</label>
+        <select class="form-select" aria-label="" disabled="true" name="bundleType" id="bundleType" name="settings.type" id="settings.type" [(ngModel)]="settings.type" >
+          <option value="CUSTOM">CUSTOM</option>
+          <option value="REST">REST</option>
+        
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="recipient-name" class="col-form-label">tenant:</label>
+        <input readonly ype="text" class="form-control" name="settings.tenantID" id="settings.tenantID" [(ngModel)]="settings.crendentials.tenantID" id="recipient-name">
+      </div>
+
+      <div class="mb-3">
+        <label for="recipient-name" class="col-form-label">client:</label>
+        <input readonly type="text" class="form-control" name="settings.clientId" id="settings.clientId" [(ngModel)]="settings.crendentials.clientId" id="recipient-name">
+      </div>
+
+      <div class="mb-3">
+        <label for="recipient-name" class="col-form-label">secret:</label>
+        <input  readonly type="text" class="form-control" name="settings.clientSecret" id="settings.clientSecret" [(ngModel)]="settings.crendentials.clientSecret" id="recipient-name">
+      </div>
+
+      <div class="mb-3">
+        <label for="recipient-name" class="col-form-label">storage account:</label>
+        <input readonly type="text" class="form-control" name="settings.storageAccountName" id="settings.storageAccountName" [(ngModel)]="settings.crendentials.storageAccountName" id="recipient-name">
+      </div>
+
+      <div class="mb-3">
+        <label for="recipient-name" class="col-form-label">blob container:</label>
+        <input readonly type="text" class="form-control" name="settings.containerName" id="settings.containerName" [(ngModel)]="settings.crendentials.containerName" id="recipient-name">
+      </div>
+
+      <div class="mb-10">
+        <label for="data-text" class="col-form-label"  >data:</label>
+        <textarea readonly class="form-control" rows="3" id="data-text"   >{{settings.data | json}}</textarea>
+      </div>
+    </form>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="close(2)" data-bs-dismiss="modal">Close</button>
+    <!--button type="button" class="btn btn-primary">Save</button-->
+  </div>
+
+</ng-template>
+
+
+<ng-template #mypublish let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Upload Azure Storage Account</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="close(2)"></button>
+  </div>
+
+  <div class="modal-body">
+    <form>
+
+      <div class="mb-3">
+        <label for="recipient-name" class="col-form-label">name bundle:</label>
+        <input  ype="text" class="form-control"  name="namebundle" id="namebundle" [(ngModel)]="namebundle">
+      </div>
+       
+    </form>
+    <div *ngIf='!(messagePublish == "")' style="font-size:  small; color: #198754;" ><span>{{ messagePublish }}</span></div>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="close(2)" data-bs-dismiss="modal">Close</button>
+    <button class="btn btn-primary" *ngIf="bundle.policies.length != 0"
+            [disabled]="!evalPolicy() || disabledButton" type="button" (click)="callPublish()">
+            
+            <b *ngIf="!publish"><i class="bi bi-cloud-upload-fill">&nbsp;&nbsp;publish </i></b>
+            <span *ngIf="publish"  class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            <span *ngIf="publish"  class="sr-only">&nbsp;&nbsp; loading...</span>
+          
+            </button>
+  </div>
+
+</ng-template>
