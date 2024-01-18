@@ -24,6 +24,26 @@ entries:
   sample-authz:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2024-01-18T22:32:18.286369184Z"
+    description: example service using authz-system
+    digest: 2c594f949974ac531c8aa0219404da7eb83ac4060b86587e784cfec8e7d688fe
+    home: https://github.com/raanfefu/basajaun/
+    icon: https://github.com/raanfefu/basajaun/blob/main/architecture/assets/8352357.png
+    keywords:
+    - sample-authz
+    maintainers:
+    - email: rafael.fernandez.ve@gmail.com
+      name: rafael martin fernandez oberto
+      url: https://github.com/raanfefu
+    name: sample-authz
+    sources:
+    - https://github.com/raanfefu/basajaun/tree/main/charts/sample-authz
+    type: application
+    urls:
+    - https://github.com/raanfefu/basajaun/releases/download/sample-authz-0.0.2/sample-authz-0.0.2.tgz
+    version: 0.0.2
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2023-09-13T00:24:41.736597382Z"
     description: example service using authz-system
     digest: a75cd9fc467191bea4c82d0db05062838cdbd59d6c0c82ebc01400793ab3dd72
@@ -42,4 +62,4 @@ entries:
     urls:
     - https://github.com/raanfefu/basajaun/releases/download/sample-authz-0.0.1/sample-authz-0.0.1.tgz
     version: 0.0.1
-generated: "2023-09-13T00:24:41.736601882Z"
+generated: "2024-01-18T22:32:18.286374483Z"
