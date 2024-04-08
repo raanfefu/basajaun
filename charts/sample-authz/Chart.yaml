@@ -2,7 +2,7 @@ apiVersion: v2
 name: sample-authz
 description: example service using authz-system
 type: application
-version: 0.0.2
+version: 0.0.3
 keywords:
   - sample-authz
 home: https://github.com/raanfefu/basajaun/
